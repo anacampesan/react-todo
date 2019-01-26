@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Task from './Task';
 
-class TaskList extends Component {
-    
+import Task from '../components/Task'
+
+class Dashboard extends Component {
+
     constructor(props) {
         super(props);
 
@@ -27,13 +28,33 @@ class TaskList extends Component {
         }
     }
 
+    componentDidMount() {
+        let self = this;
+        let items = this.state.items;
+        items.push({
+            id: 4,
+            name: 'Super new item',
+            description: 'Wow i really just added this item'
+        });
+
+        setTimeout(function() {
+            self.setState({
+                items: items
+            });
+        }, 3000);
+    }
+
     render() {
         return(
-            <ul>
-                {this.state.items.map(item => <Task item={item}></Task>)}
-            </ul>
+            <div className="dashboard">
+                <h1>ToDo App</h1>
+
+                {this.state.items.map(item => 
+                    <Task key={item.id} item={item}></Task>    
+                )}
+            </div>
         );
     }
 }
 
-export default TaskList;
+export default Dashboard;

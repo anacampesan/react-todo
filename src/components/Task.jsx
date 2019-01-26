@@ -3,14 +3,16 @@ import React, {Component} from 'react';
 class Task extends Component {
 
     props: {
-        id: 'number',
-        name: 'string',
-        description: 'string'
+        item: {
+            id: 'number',
+            name: 'string',
+            description: 'string'
+        }
     }
 
     render() {
         return (
-            <li data-id={this.props.id}>{this.props.name}</li>
+            <li data-id={this.props.item.id}>{this.props.item.name}</li>
         );
     };
 }
