@@ -29,29 +29,41 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        let self = this;
+    }
+
+    addItem = (e) => {
+        e.preventDefault();
+
         let items = this.state.items;
+        let currentId = this.state.items.length
+
         items.push({
-            id: 4,
-            name: 'Super new item',
-            description: 'Wow i really just added this item'
+            id: currentId++,
+            name: e.target[0].value,
+            description: e.target[1].value
         });
 
-        setTimeout(function() {
-            self.setState({
-                items: items
-            });
-        }, 3000);
+        this.setState({
+            items: items
+        });
     }
 
     render() {
         return(
             <div className="dashboard">
-                <h1>ToDo App</h1>
+                <h1>THE ULTIMATE TODO APP</h1>
+
+                <hr/>
 
                 {this.state.items.map(item => 
                     <Task key={item.id} item={item}></Task>    
                 )}
+
+                <form onSubmit={this.addItem}>
+                    <input name="name" placeholder="Task name"/>
+                    <textarea name="description" id="" cols="30" rows="10"></textarea>
+                    <button name="">Submit</button>
+                </form>
             </div>
         );
     }

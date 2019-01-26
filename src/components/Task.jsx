@@ -12,7 +12,13 @@ class Task extends Component {
 
     render() {
         return (
-            <li data-id={this.props.item.id}>{this.props.item.name}</li>
+            <div>
+                <h2>[{this.props.item.id}] - {this.props.item.name}</h2>
+
+                <p>{this.props.item.description}</p>
+
+                <hr/>
+            </div>
         );
     };
 }
